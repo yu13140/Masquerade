@@ -7,7 +7,7 @@ android {
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.example.masquerade"
+        applicationId "com.yu13140.masquerade"
         minSdk 21
         targetSdk 34
         versionCode 1
