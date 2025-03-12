@@ -12,7 +12,7 @@
         android:value="true" />
     <meta-data
         android:name="xposeddescription"
-        android:value="Hook系统属性返回值" />
+        android:value="去留肝胆两昆仑" />
     <meta-data
         android:name="xposedminversion"
         android:value="93" />
