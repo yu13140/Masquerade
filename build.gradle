@@ -4,9 +4,16 @@ buildscript {
         google()
         mavenCentral()
     }
-    dependencies {
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    compileOnly 'de.robv.android.xposed:api:82'
+    dependencies {        
+        classpath 'com.android.tools.build:gradle:8.1.0'
+    }
+}
+
+// 全局仓库配置
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
     }
 }
 
