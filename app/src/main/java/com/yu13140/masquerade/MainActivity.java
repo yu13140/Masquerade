@@ -1,6 +1,8 @@
 package com.yu13140.masquerade;
 
 import androidx.appcompat.app.AppCompatActivity;
+import java.util.List;          
+import android.content.pm.ApplicationInfo;
 import com.yu13140.masquerade.XposedHook;
 import android.os.Bundle;
 import android.content.SharedPreferences;
