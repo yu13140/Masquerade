@@ -9,7 +9,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -22,8 +21,17 @@ jobs:
 
     - name: Setup Android SDK
       uses: android-actions/setup-android@v3
+      with:
+        build-tools-version: 33.0.2
+        ndk-version: 25.2.9519653
+
+    - name: Grant gradlew permission
+      run: chmod +x gradlew
 
     - name: Build with Gradle
       run: |
-        chmod +x gradlew
-        ./gradlew assembleDebug
+        ./gradlew assembleDebug \
+          --stacktrace \
+          --info \
+          --no-daemon \
+          -Dorg.gradle.parallel=false
