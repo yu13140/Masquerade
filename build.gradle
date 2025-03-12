@@ -4,16 +4,8 @@ buildscript {
         google()
         mavenCentral()
     }
-    dependencies {        
+    dependencies {
         classpath 'com.android.tools.build:gradle:8.1.0'
-    }
-}
-
-// 全局仓库配置
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
     }
 }
 
