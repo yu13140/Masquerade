@@ -1,0 +1,15 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    compileOnly 'de.robv.android.xposed:api:82'
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
