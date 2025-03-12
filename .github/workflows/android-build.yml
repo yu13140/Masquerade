@@ -30,7 +30,7 @@ jobs:
 
     - name: Build with Gradle
       run: |
-        ./gradle cleanBuildCache
+        gradle cleanBuildCache
         ./gradlew assembleDebug \
           --stacktrace \
           --info \
