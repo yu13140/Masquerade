@@ -19,11 +19,9 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Setup Android SDK
-      uses: android-actions/setup-android@v3
-      with:
-        build-tools-version: 33.0.2
-        ndk-version: 25.2.9519653
+    - name: Install Android SDK API 34
+      run: |
+        yes | sdkmanager "platforms;android-34" "build-tools;34.0.0"
 
     - name: Grant gradlew permission
       run: chmod +x gradlew
@@ -32,8 +30,9 @@ jobs:
       run: java -version  
 
     - name: Build with Gradle
-      run: |
+      run: |        
         ./gradlew clean build
+        ./gradlew app:dependencies
         ./gradlew assembleDebug \
           --stacktrace \
           --info \
