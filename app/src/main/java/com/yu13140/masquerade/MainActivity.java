@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 import java.util.List;
+import java.util.Arrays;
 import android.content.pm.ApplicationInfo;
 
 public class MainActivity extends AppCompatActivity {

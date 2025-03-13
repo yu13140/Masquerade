@@ -6,6 +6,9 @@ import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 import android.content.Context;
 import android.content.SharedPreferences;
+import de.robv.android.xposed.XposedBridge;
+import android.os.Handler;
+import android.os.Looper;
 
 public class XposedHook implements IXposedHookLoadPackage {
     private static String a;
