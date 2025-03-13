@@ -25,6 +25,11 @@ android {
                path "src/main/cpp/CMakeLists.txt"
            }
        }
+       
+    packagingOptions {
+        exclude "lib/arm64-v8a/libnativehook.so"
+        exclude "lib/armeabi64-v7a/libnativehook.so"
+    }   
 
     buildTypes {
         release {
