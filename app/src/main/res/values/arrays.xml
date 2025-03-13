@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="scope">
+        <item>com.kimchangyoun.rootbeerFresh.sample</item>
+        <item>com.reveny.nativecheck</item>
+        <item>io.github.vvb2060.mahoshojo</item>
+        <item>com.zhenxi.hunter</item>       
+    </string-array>
+</resources>

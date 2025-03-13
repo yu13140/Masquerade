@@ -1,20 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"    
     android:versionCode="1"
-    android:versionName="1.0" >
-
-    <uses-sdk
-        android:minSdkVersion="26"
-        android:targetSdkVersion="31" />
-
-    <meta-data
-        android:name="xposedmodule"
-        android:value="true" />
-    <meta-data
-        android:name="xposeddescription"
-        android:value="去留肝胆两昆仑" />
-    <meta-data
-        android:name="xposedminversion"
-        android:value="93" />
+    android:versionName="1.0" >        
 
     <application
         android:allowBackup="true"
@@ -23,6 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
+        <meta-data
+            android:name="xposedmodule"
+            android:value="true" />
+        <meta-data
+            android:name="xposeddescription"
+            android:value="去留肝胆两昆仑" />
+        <meta-data
+            android:name="xposedminversion"
+            android:value="93" />
+        <meta-data
+            android:name="xposedscope"
+            android:resource="@array/scope" />
         <activity
             android:name=".MainActivity"
             android:exported="true" >
