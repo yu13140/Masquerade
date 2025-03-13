@@ -1,7 +1,7 @@
 {
   "useR8": false,
   "minSdkVersion": 21,
-  "targetSdkVersion": 30,
+  "targetSdkVersion": 34,
   "versionName": "1.0",
   "versionCode": 1,
   "zipAlignEnabled": false,
