@@ -10,7 +10,11 @@
     app:layout_constraintTop_toTopOf="parent"
     tools:context=".MainActivity" >
 
-    <LinearLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints">
 
         <Spinner
             android:id="@+id/app_spinner"
