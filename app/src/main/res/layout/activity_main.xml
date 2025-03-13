@@ -1,43 +1,40 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    tools:context=".MainActivity" >
+    android:padding="16dp"
+    tools:context=".MainActivity">
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        tools:ignore="MissingConstraints">
+    <Spinner
+        android:id="@+id/app_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"/>
 
-        <Spinner
-            android:id="@+id/app_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/property_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="输入属性名"
+        android:layout_marginBottom="16dp"
+        android:inputType="textCapCharacters"/>
 
-        <EditText
-            android:id="@+id/property_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="输入属性名" />
+    <EditText
+        android:id="@+id/property_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="输入属性值"
+        android:layout_marginBottom="24dp"
+        android:inputType="number"/>
 
-        <EditText
-            android:id="@+id/property_value"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="输入属性值" />
+    <Button
+        android:id="@+id/save_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="保存配置"
+        android:backgroundTint="@color/primary"
+        android:textColor="@android:color/white"/>
 
-        <Button
-            android:id="@+id/save_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="保存配置" />
-    </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
