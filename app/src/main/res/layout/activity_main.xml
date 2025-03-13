@@ -34,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="保存配置"
-        android:backgroundTint="@color/primary"
+        android:backgroundTint="@color/colorPrimary"
         android:textColor="@android:color/white"/>
 
 </LinearLayout>
