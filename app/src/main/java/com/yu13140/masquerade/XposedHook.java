@@ -38,6 +38,12 @@ public class XposedHook implements IXposedHookLoadPackage {
         NativeHook.init();
         hideXposed();
     }
+    
+    private boolean isSystemProcess(String packageName) {
+        return packageName.startsWith("android.") 
+               || packageName.startsWith("com.android.")
+               || packageName.equals("android");
+    }
 
     private void hideXposed() {
         if (lpparam == null) return;
