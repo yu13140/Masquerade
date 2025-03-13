@@ -4,8 +4,7 @@ plugins {
 
 android {
     namespace 'com.yu13140.masquerade'
-    compileSdk 34
-    buildToolVersion '34.0.0'
+    compileSdk 34   
 
     defaultConfig {
         applicationId "com.yu13140.masquerade"
