@@ -28,8 +28,10 @@ android {
        
     packagingOptions {
         exclude "lib/arm64-v8a/libnativehook.so"
-        exclude "lib/armeabi64-v7a/libnativehook.so"
-    }   
+        exclude "lib/armeabi-v7a/libnativehook.so"
+        exclude "lib/x86/libnativehook.so"
+        exclude "lib/x86_64/libnativehook.so"
+    }
 
     buildTypes {
         release {
