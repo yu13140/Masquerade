@@ -2,71 +2,58 @@ package com.yu13140.masquerade;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 import org.json.JSONObject;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.InputStream;
-import java.util.List;
 import java.io.OutputStream;
 import java.io.ByteArrayInputStream;
+import java.util.List;
 
 public class XposedHook implements IXposedHookLoadPackage {
-    private static final String CONFIG_PATH = "/data/user_de/0/com.yu13140.masquerade/files/xposed_config.json";
-    private long lastModifiedTime = 0;    
-    
-    @Override
-     public void handleLoadPackage(final XC_LoadPackage.LoadPackageParam lpparam) {
-         JSONObject config = loadConfig();
-         if (config == null) return;
- 
-         String targetApp = config.optString("targetApp", "");
-         String propName = config.optString("systemProperty", "ro.boot.flash.locked");
-         String fakeValue = config.optString("fakeValue", "0");
-         
-         if (!lpparam.packageName.equals(targetApp)) {
-             return;
-         }
-         
-         XposedBridge.log("[Masquerade] Hooking " + lpparam.packageName + " - " + propName + "=" + fakeValue);
-         hookSystemProperties(lpparam, propName, fakeValue);
-         hookRuntimeExec(lpparam, propName, fakeValue);
-         hideXposed(lpparam);
-     }
-     
+   
     private JSONObject loadConfig() {
-        try {
-            File file = new File(CONFIG_PATH);
-            if (!file.exists()) {
-                XposedBridge.log("[Masquerade] 配置文件不存在: " + CONFIG_PATH);
-                return null;
-            }
-            XposedBridge.log("[Masquerade] 读取中，配置文件存在: " + CONFIG_PATH);
+        try {            
+            XSharedPreferences prefs = new XSharedPreferences("com.yu13140.masquerade", "xposed_config");
+            prefs.makeWorldReadable();
+            prefs.reload();
 
-            long newModifiedTime = file.lastModified();
-            if (newModifiedTime == lastModifiedTime) {
-                return null;
-            }
-            lastModifiedTime = newModifiedTime;
+            String targetApp = prefs.getString("targetApp", "");
+            String systemProperty = prefs.getString("systemProperty", "ro.boot.flash.locked");
+            String fakeValue = prefs.getString("fakeValue", "0");
 
-            BufferedReader reader = new BufferedReader(new FileReader(file));
-            StringBuilder sb = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                sb.append(line);
-            }
-            reader.close();
-
-            return new JSONObject(sb.toString());
+            JSONObject config = new JSONObject();
+            config.put("targetApp", targetApp);
+            config.put("systemProperty", systemProperty);
+            config.put("fakeValue", fakeValue);
+            return config;
         } catch (Exception e) {
             XposedBridge.log("[Masquerade] 读取配置失败: " + e.getMessage());
             return null;
         }
     }
-    
+
+    @Override
+    public void handleLoadPackage(final XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
+        JSONObject config = loadConfig();
+        if (config == null) return;
+
+        String targetApp = config.optString("targetApp", "");
+        String propName = config.optString("systemProperty", "ro.boot.flash.locked");
+        String fakeValue = config.optString("fakeValue", "0");
+        
+        if (!lpparam.packageName.equals(targetApp)) {
+            return;
+        }
+
+        XposedBridge.log("[Masquerade] Hooking " + lpparam.packageName + " - " + propName + "=" + fakeValue);
+        hookSystemProperties(lpparam, propName, fakeValue);
+        hookRuntimeExec(lpparam, propName, fakeValue);
+        hideXposed(lpparam);
+    }
+
     private void hookSystemProperties(XC_LoadPackage.LoadPackageParam lpparam, String propName, String fakeValue) {
         XposedHelpers.findAndHookMethod(
             "android.os.SystemProperties",
