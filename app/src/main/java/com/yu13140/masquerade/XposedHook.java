@@ -15,27 +15,31 @@ import java.io.OutputStream;
 import java.io.ByteArrayInputStream;
 
 public class XposedHook implements IXposedHookLoadPackage {
-    private static final String CONFIG_PATH = "/data/user_de/0/com.yu13140.masquerade/files/xposed_config.json";
-    private long lastModifiedTime = 0;
+    private static final String CONFIG_PATH = "/data/local/masquerade/xposed_config.json";
 
-    @Override
-    public void handleLoadPackage(final XC_LoadPackage.LoadPackageParam lpparam) {
-        JSONObject config = loadConfig();
-        if (config == null) return;
+    private JSONObject loadConfig() {
+        try {
+            File file = new File(CONFIG_PATH);
+            if (!file.exists()) {
+                XposedBridge.log("[Masquerade] 配置文件不存在: " + CONFIG_PATH);
+                return null;
+            }
 
-        String targetApp = config.optString("targetApp", "");
-        String propName = config.optString("systemProperty", "ro.boot.flash.locked");
-        String fakeValue = config.optString("fakeValue", "0");
+            XposedBridge.log("[Masquerade] 读取中，配置文件存在: " + CONFIG_PATH);
 
-        if (!lpparam.packageName.equals(targetApp)) {
-            return;
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                sb.append(line);
+            }
+            reader.close();
+
+            return new JSONObject(sb.toString());
+        } catch (Exception e) {
+            XposedBridge.log("[Masquerade] 读取配置失败: " + e.getMessage());
+            return null;
         }
-
-        XposedBridge.log("[Masquerade] Hooking " + lpparam.packageName + " - " + propName + "=" + fakeValue);
-
-        hookSystemProperties(lpparam, propName, fakeValue);
-        hookRuntimeExec(lpparam, propName, fakeValue);
-        hideXposed(lpparam);
     }
 
     private JSONObject loadConfig() {
