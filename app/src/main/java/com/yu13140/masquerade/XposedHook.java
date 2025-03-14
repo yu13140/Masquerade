@@ -15,7 +15,7 @@ import java.io.OutputStream;
 import java.io.ByteArrayInputStream;
 
 public class XposedHook implements IXposedHookLoadPackage {
-    private static final String CONFIG_PATH = "/data/local/masquerade/xposed_config.json";
+    private static final String CONFIG_PATH = "/data/user_de/0/com.yu13140.masquerade/files/xposed_config.json";
     private long lastModifiedTime = 0;    
     
     @Override

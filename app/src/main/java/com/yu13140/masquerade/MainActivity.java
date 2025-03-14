@@ -9,9 +9,8 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileWriter;
 
-public class MainActivity extends Activity {
-    Runtime.getRuntime().exec("mkdir -p /data/local/masquerade/ ");
-    private static final String CONFIG_PATH = "/data/local/masquerade/xposed_config.json";
+public class MainActivity extends Activity {    
+    private static final String CONFIG_PATH = "/data/user_de/0/com.yu13140.masquerade/files/xposed_config.json";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
