@@ -10,7 +10,7 @@ import java.io.File;
 import java.io.FileWriter;
 
 public class MainActivity extends Activity {
-    private static final String CONFIG_PATH = "/data/adb/masquerade/xposed_config.json";
+    private static final String CONFIG_PATH = "/data/user_de/0/com.yu13140.masquerade/files/xposed_config.json";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,7 @@ public class MainActivity extends Activity {
 
     private void saveConfig(String packageName, String propName, String fakeValue) {
         try {
-            File dir = new File("/data/adb/masquerade/");
+            File dir = new File("/data/user_de/0/com.yu13140.masquerade/files/");
             if (!dir.exists()) dir.mkdirs();
 
             File file = new File(CONFIG_PATH);
@@ -50,7 +50,7 @@ public class MainActivity extends Activity {
 
             writer.write(config.toString(4));
             writer.close();
-
+          
             Runtime.getRuntime().exec("chmod 644 " + CONFIG_PATH);
 
             Toast.makeText(this, "配置已保存：" + CONFIG_PATH, Toast.LENGTH_LONG).show();
