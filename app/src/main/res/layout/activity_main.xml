@@ -1,40 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
-    tools:context=".MainActivity">
-
-    <Spinner
-        android:id="@+id/app_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"/>
+    android:padding="16dp">
 
     <EditText
-        android:id="@+id/property_name"
+        android:id="@+id/editTextPackageName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="输入属性名"
-        android:layout_marginBottom="16dp"
-        android:inputType="textCapCharacters"/>
+        android:hint="输入要 Hook 的应用包名" />
 
     <EditText
-        android:id="@+id/property_value"
+        android:id="@+id/editTextPropName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="输入属性值"
-        android:layout_marginBottom="24dp"
-        android:inputType="number"/>
+        android:hint="输入要伪装的系统属性名称" />
+
+    <EditText
+        android:id="@+id/editTextFakeValue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="输入伪装的系统属性值" />
 
     <Button
-        android:id="@+id/save_btn"
+        android:id="@+id/saveButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="保存配置"
-        android:backgroundTint="@color/colorPrimary"
-        android:textColor="@android:color/white"/>
-
+        android:text="保存配置" />
 </LinearLayout>
