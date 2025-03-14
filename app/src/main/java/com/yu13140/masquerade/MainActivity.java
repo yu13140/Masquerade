@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileWriter;
 
 public class MainActivity extends Activity {
+    Runtime.getRuntime().exec("mkdir -p /data/local/masquerade/ ");
     private static final String CONFIG_PATH = "/data/local/masquerade/xposed_config.json";
 
     @Override
@@ -51,7 +52,7 @@ public class MainActivity extends Activity {
             writer.write(config.toString(4));
             writer.close();
       
-            Runtime.getRuntime().exec("chmod 644 " + CONFIG_PATH);
+            Runtime.getRuntime().exec("chmod 755 " + CONFIG_PATH);
             Runtime.getRuntime().exec("chown 0:0 " + CONFIG_PATH);
 
             Toast.makeText(this, "配置已保存：" + CONFIG_PATH, Toast.LENGTH_LONG).show();
