@@ -5,15 +5,15 @@ import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
-
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
+import java.io.OutputStream;
+import java.io.ByteArrayInputStream;
 
 public class XposedHook implements IXposedHookLoadPackage {
     private static final String CONFIG_PATH = "/data/local/tmp/xposed_config.json";
